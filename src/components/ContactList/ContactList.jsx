@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ContactListComponent } from 'components/ContactListComponent/ContactListComponent';
 
 export const ContactList = ({ values, deleteContact }) => {
@@ -16,3 +17,7 @@ export const ContactList = ({ values, deleteContact }) => {
 );
 } 
 
+ContactList.propTypes = {
+  values: PropTypes.array.isRequired,
+  deleteContact: PropTypes.func.isRequired,
+};

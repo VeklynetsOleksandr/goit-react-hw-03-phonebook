@@ -16,6 +16,21 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const storageContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (storageContacts) {
+      this.setState({ contacts: storageContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   handleSubmit = ({ name, number }, { resetForm }) => {
     if (this.state.contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())) {
       alert(name + ' is already in contacts');
